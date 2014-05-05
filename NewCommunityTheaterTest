@@ -1,0 +1,72 @@
+
+
+package newcommunitytheatertest;
+import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+/**
+ *
+ * @author Lauren Smith
+ * 1000866663
+ * Lab 4 Main Class
+ */
+public class NewCommunityTheaterTest {
+
+    
+    
+    public static void main(String[] args) {
+        
+        
+       //Scanner theaterInfo = new Scanner(System.in);
+       Scanner choice = new Scanner(System.in);//variable for user to choose
+       System.out.printf("\nFile input (F) or keyboard input (K): ");
+       String choiceInput = choice.next();
+       CommunityTheater theaterObj;//object of community theater not in use at the moment
+       theaterObj = new CommunityTheater();
+       ArrayList<Actor> actorList = new ArrayList();//ArrayList of instances of Actors, will be moved to theaterObj
+   
+       //user chooses keyboard or file input
+       if(choiceInput.equalsIgnoreCase("k"))
+       {    //not in use at the moment
+           System.out.println("\nYou've chosen keyboard input...");
+       }
+       else if(choiceInput.equalsIgnoreCase("f"))
+       {    //call method to read in the actor file
+           readActorFile(actorList);
+           
+       }
+       
+    }
+    //method for reading the actor file, taking in actor ArrayList- unsure of this
+    public static void readActorFile(ArrayList<Actor> actorList)
+    {
+        
+
+           Scanner fileIn;
+           try
+           {
+               fileIn = new Scanner( new File("ActorsIn3.txt"));
+               while(fileIn.hasNext())
+               {   
+                   //loop for multiple actors may go here?
+                   //adds one actor at the moment
+                   Actor actor1 = new Actor(fileIn);
+                   //adds actor1 to Actor ArrayList
+                   actorList.add(actor1);
+                   
+               }
+           }
+           catch(FileNotFoundException fileNotFoundException)
+           {
+               System.err.println("Error opening file.");
+               System.exit(1);
+           }
+           //print actor ArrayList
+           System.out.print(actorList);
+    }
+    
+}
